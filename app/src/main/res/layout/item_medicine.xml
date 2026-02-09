@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:background="@android:drawable/dialog_holo_light_frame"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/txtMedicineName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medicine Name"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtDosage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dosage" />
+
+    <TextView
+        android:id="@+id/txtStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="StartDate" />
+
+    <TextView
+        android:id="@+id/txtEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EndDate" />
+
+    <TextView
+        android:id="@+id/txtDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mon, Wed, Fri" />
+
+    <TextView
+        android:id="@+id/txtTimes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="08:00 AM, 02:00 PM" />
 
 </LinearLayout>
