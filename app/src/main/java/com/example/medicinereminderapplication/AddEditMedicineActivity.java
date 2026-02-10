@@ -129,8 +129,59 @@ public class AddEditMedicineActivity extends AppCompatActivity {
                 c.get(Calender.YEAR), c.get(Calender.Month), c.get(Calender.DAY_OF_MONTH)).show();
     }
 
+    private void showTimePicker(){
+        Calender c = Calendar.getInstance();
+        new TimePickerDialog(this, (view, hour, minute) -> addTimeTextView(String.format("%02d:%02d", hour, minute)),
+                c.get(Calender.HOUR_OF_DAY), c.get(Calender.MINUTE), true).show();
+    }
 
+    private List<String> getSelectedDays(){
+        List<String> days = new ArrayList<>();
+        if (chkMon.isChecked()) days.add("Mon");
+        if (chkTue.isChecked()) days.add("Tue");
+        if (chkWed.isChecked()) days.add("Wed");
+        if (chkThu.isChecked()) days.add("Thu");
+        if (chkFri.isChecked()) days.add("Fri");
+        if (chkSat.isChecked()) days.add("Sat");
+        if (chkSun.isChecked()) days.add("Sun");
+        return days;
+    }
 
+    private List<String> getReminderTimes() {
+        List<String> times = new ArrayList<>();
+        for (int i = 0; i < layoutTimes.getChildCount(); i++) {
+            TextView t = (TextView) layoutTimes.getChildAt(i);
+            times.add(t.getText().toString());
+        }
+        return times;
+    }
 
+    private void saveMedicine(){
+        String name = edtMedicineName.getText().toString().trim();
+        String dosage = edtDosage.getText().toString().trim();
+        String notes = edtNotes.getText().toString().trim();
+        String StartDate = txtStartDate.getText().toString().trim();
+        String EndDate = txtEndDate.getText().toString().trim();
+        String username = getIntent().getStringExtra("username"); //Get username from intent
 
+        if (name.isEmpty() || startDate.equals(getString(R.string.start_date_text))){
+            Toast.makeText(this, "Please enter medicine name and start date", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Medicine med;
+        if (medicineId == -1){
+            //Adding new medicine
+            med = new Medicine(name, dosage, startDate, endDate, getSelectedDays(), getReminderTimes(), notes, username);
+            dbhelper.insertMedicine(med);
+        }
+        else{
+            //Editing medicine details
+            med = new Medicine(medicineId, name, dosage, startDate, endDate, getSelectedDays(), getReminderTimes(), notes, username);
+            dbhelper.updateMedicine(med);
+        }
+
+        Toast.makeText(this, "Medicine saved!", Toast.LENGTH_SHORT).show();
+        finish();
+    }
 }
