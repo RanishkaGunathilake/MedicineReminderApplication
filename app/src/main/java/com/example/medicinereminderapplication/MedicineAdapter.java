@@ -30,8 +30,21 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = LayoutInflater.from(context).inflate(R.layout.item_medicine, parent, false);
-        return new ViewHolder(view);
+        return new RecyclerView.ViewHolder(view);
     }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position){
+        Medicine med = medicineList.get(position);
+        holder.txtName.setText(med.getName());
+        holder.txtDosage.setText(med.getDosage());
+        holder.txtDays.setText(TextUtils.join(", ", med.getDays() != null ? med.getDays() : new ArrayList()));
+        holder.txtTimes.setText(TextUtils.join(", ", med.getTimes() != null ? med.getTimes() : new ArrayList()));
+        holder.txtStartDate.setText("From : " + (med.getStartDate() != null ? med.getStartDate() : "N/A"));
+        holder.txtEndDate.setText("From : " + (med.getEndDate() != null ? med.getEndDate() : "N/A"));
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(med));
+    }
+
 }
