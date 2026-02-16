@@ -47,4 +47,22 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         holder.itemView.setOnClickListener(v -> listener.onItemClick(med));
     }
 
+    @Override
+    public int getItemCount() { return medicineList.size();}
+
+    public void updateList(List<Medicine> newList){
+        medicineList.clear();
+        medicineList.addAll(newList);
+        notifyDataSetChanged();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+        TextView txtname, txtDosage, txtStartDate, txtEndDate, txtDays, txtTimes;
+
+        public ViewHolder(View itemView){
+            super(itemView);
+        }
+    }
+
+
 }
