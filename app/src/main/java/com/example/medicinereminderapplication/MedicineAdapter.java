@@ -57,12 +57,18 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView txtname, txtDosage, txtStartDate, txtEndDate, txtDays, txtTimes;
+        TextView txtName, txtDosage, txtStartDate, txtEndDate, txtDays, txtTimes;
 
         public ViewHolder(View itemView){
             super(itemView);
+            txtName = itemView.findViewById(R.id.txtMedicineName);
+            txtDosage = itemView.findViewById(R.id.txtDosage);
+            txtStartDate = itemView.findViewById(R.id.txtStartDate);
+            txtEndDate = itemView.findViewById(R.id.txtEndDate);
+            txtDays = itemView.findViewById(R.id.txtDays);
+            txtTimes = itemView.findViewById(R.id.txtMedicineName);
         }
     }
-
-
 }
+
+//Completed
