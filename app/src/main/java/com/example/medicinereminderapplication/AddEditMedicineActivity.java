@@ -39,7 +39,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
                 char c = source.charAt(i);
 
                 if(!(Character.isLetterOrDigit(c) || c == ' ' || c == '.' || c == '/' || c == '%' || c == '+' || c == '_' || c == '-')){
-                    return "";
+                    return "";//Blocking the keyboard
                 }
             }
             return null;
@@ -94,14 +94,14 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         });
     }
 
-    private void loadMedicineForEdit(){
+    private void loadMedicineForEdit(){//Loading existing data
         edtMedicineName.setText(medicine.getName());
         edtDosage.setText(medicine.getDosage());
         edtNotes.setText(medicine.getNotes());
         txtStartDate.setText(medicine.getStartDate());
         txtEndDate.setText(medicine.getEndDate());
 
-        for (String d : medicine.getDays()){
+        for (String d : medicine.getDays()){//Marking selected date
             switch (d){
                 case "Mon":chkMon.setChecked(true); break;
                 case "Tue":chkTue.setChecked(true); break;
@@ -112,7 +112,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
                 case "Sun":chkSun.setChecked(true); break;
             }
         }
-        for (String t : medicine.getTimes()) addTimeTextView(t);
+        for (String t : medicine.getTimes()) addTimeTextView(t);//Adding saved reminder times
     }
 
     private void addTimeTextView(String time){
