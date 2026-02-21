@@ -63,8 +63,8 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        adapter.updateList(dbHelper.getMedicinesForUser(username));
+        adapter.updateList(dbHelper.getMedicinesForUser(username));//Refresh medicine list after adding/editing medicine
     }
 }
 
-//Completed
+//100% Completed
