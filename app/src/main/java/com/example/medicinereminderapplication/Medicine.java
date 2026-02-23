@@ -26,7 +26,7 @@ public class Medicine {
         this.username = username;
     }
 
-    //Contructor for new medicine (before inserting and id is not assigned)
+    //Constructor for new medicine (before inserting and id is not assigned)
     public Medicine(String name, String dosage, String startDate, String endDate, List<String> days, List<String> times, String notes, String username) {
         this.name = name;
         this.dosage = dosage;
