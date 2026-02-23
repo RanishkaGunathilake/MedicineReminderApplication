@@ -136,10 +136,20 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         layoutTimes.addView(t);
     }
 
-    private void showDatePicker(TextView txt){
+    private void showDatePicker(TextView txt, boolean isStartDate) {
         Calendar c = Calendar.getInstance();
-        new DatePickerDialog(this, (view, year, month, day) -> txt.setText(day + "/" + (month + 1) + "/" + year),
-                c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+        DatePickerDialog dpd = new DatePickerDialog(this, (view, year, month, day) -> {
+            txt.setText(day + "/" + (month + 1) + "/" + year);
+            if (isStartDate) {
+                startDateCalendar = Calendar.getInstance();
+                startDateCalendar.set(year, month, day);
+            }
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+
+        if (!isStartDate && startDateCalendar != null) {
+            dpd.getDatePicker().setMinDate(startDateCalendar.getTimeInMillis());
+        }
+        dpd.show();
     }
 
     private void showTimePicker(){
@@ -181,6 +191,8 @@ public class AddEditMedicineActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter medicine name and start date", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        //Validating
 
         Medicine med;
         if (medicineId == -1){
