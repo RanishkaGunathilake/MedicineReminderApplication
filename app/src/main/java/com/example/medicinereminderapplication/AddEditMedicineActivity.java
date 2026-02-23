@@ -107,6 +107,11 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         txtEndDate.setText(medicine.getEndDate());
 
         //Setting start date calendar
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            startDateCalendar = Calendar.getInstance();
+            startDateCalendar.setTime(sdf.parse(medicine.getStartDate()));
+        } catch (ParseException ignored){}
 
 
         for (String d : medicine.getDays()){//Marking selected date
