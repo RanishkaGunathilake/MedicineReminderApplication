@@ -172,7 +172,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         Medicine med;
         if (medicineId == -1){
             //Adding new medicine
-            med = new Medicine(name, dosage, startDate, endDate, getSelectedDays(), getReminderTimes(), notes, username);
+            med = new Medicine(name, dosage, StartDate, EndDate, getSelectedDays(), getReminderTimes(), notes, username);
             dbhelper.insertMedicine(med);
         }
         else{
