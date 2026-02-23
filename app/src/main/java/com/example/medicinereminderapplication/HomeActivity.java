@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
 
         findViewById(R.id.fabAddMedicine).setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, AddEditMedicineActivity.class);
-            Intent.putExtra("username", username);
+            intent.putExtra("username", username);
             startActivity(intent);
         });
 
