@@ -35,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
-        List<Medicine> medicines = dbHelper.getMedicineForUser(username);
+        List<Medicine> medicines = dbHelper.getMedicinesForUser(username);
         if (medicines == null) medicines = new ArrayList<>();
 
         adapter = new MedicineAdapter(medicines, this, medicine -> {
