@@ -132,7 +132,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
     private void showTimePicker(){
         Calendar c = Calendar.getInstance();
         new TimePickerDialog(this, (view, hour, minute) -> addTimeTextView(String.format("%02d:%02d", hour, minute)),
-                c.get(Calendar.HOUR_OF_DAY), c.get(Calender.MINUTE), true).show();
+                c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true).show();
     }
 
     private List<String> getSelectedDays(){
