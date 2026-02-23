@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,26 +18,26 @@ import android.text.TextUtils;
 public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHolder> {
     private List<Medicine> medicineList;
     private Context context;
-    private OnItemClickListner listener;
+    private AdapterView.OnItemClickListener listener;
 
     public interface onItemClickListener { //Handling click events
         void onItemClick(Medicine medicine);
     }
 
-    public MedicineAdapter(List<Medicine> medicineList, Context context, OnItemClickListner listener){
+    public MedicineAdapter(List<Medicine> medicineList, Context context, AdapterView.OnItemClickListener listener){
         this.medicineList = medicineList;
         this.context = context;
         this.listener = listener;
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = LayoutInflater.from(context).inflate(R.layout.item_medicine, parent, false);
-        return new RecyclerView.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position){
+    public void onBindViewHolder(ViewHolder holder, int position){
         Medicine med = medicineList.get(position);
         holder.txtName.setText(med.getName());
         holder.txtDosage.setText(med.getDosage());
@@ -66,7 +67,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
             txtStartDate = itemView.findViewById(R.id.txtStartDate);
             txtEndDate = itemView.findViewById(R.id.txtEndDate);
             txtDays = itemView.findViewById(R.id.txtDays);
-            txtTimes = itemView.findViewById(R.id.txtMedicineName);
+            txtTimes = itemView.findViewById(R.id.txtTimes);
         }
     }
 }
