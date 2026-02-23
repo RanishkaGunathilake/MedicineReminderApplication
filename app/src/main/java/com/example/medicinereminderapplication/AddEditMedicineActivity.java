@@ -18,7 +18,9 @@ import android.text.InputFilter;
 import android.text.Spanned;
 
 import org.w3c.dom.Text;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class AddEditMedicineActivity extends AppCompatActivity {
 
@@ -30,6 +32,8 @@ public class AddEditMedicineActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
     int medicineId = -1;
     Medicine medicine;
+
+    private Calendar startDateCalendar = null;
 
     //Dosage input filter
     private final InputFilter dosageInputFilter = new InputFilter() {
@@ -101,6 +105,9 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         edtNotes.setText(medicine.getNotes());
         txtStartDate.setText(medicine.getStartDate());
         txtEndDate.setText(medicine.getEndDate());
+
+        //Setting start date calendar
+
 
         for (String d : medicine.getDays()){//Marking selected date
             switch (d){
