@@ -164,7 +164,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         String EndDate = txtEndDate.getText().toString().trim();
         String username = getIntent().getStringExtra("username"); //Get username from intent
 
-        if (name.isEmpty() || startDate.equals(getString(R.string.start_date_text))){
+        if (name.isEmpty() || StartDate.equals(getString(R.string.start_date_text))){
             Toast.makeText(this, "Please enter medicine name and start date", Toast.LENGTH_SHORT).show();
             return;
         }
