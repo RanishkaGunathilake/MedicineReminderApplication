@@ -126,7 +126,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
     private void showDatePicker(TextView txt){
         Calendar c = Calendar.getInstance();
         new DatePickerDialog(this, (view, year, month, day) -> txt.setText(day + "/" + (month + 1) + "/" + year),
-                c.get(Calendar.YEAR), c.get(Calendar.Month), c.get(Calender.DAY_OF_MONTH)).show();
+                c.get(Calendar.YEAR), c.get(Calendar.Month), c.get(Calendar.DAY_OF_MONTH)).show();
     }
 
     private void showTimePicker(){
