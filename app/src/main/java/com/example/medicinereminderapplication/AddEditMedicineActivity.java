@@ -74,7 +74,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         //If editing
         medicineId = getIntent().getIntExtra("medicineId", -1);
         if (medicineId != -1){
-            medicine = dbHelper.getMedicineById(medicineId);
+            medicine = dbhelper.getMedicineById(medicineId);
             if (medicine != null){
                 loadMedicineForEdit();
                 btnDelete.setVisibility(Button.VISIBLE);
@@ -119,12 +119,12 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         TextView t = new TextView(this);
         t.setText(time);
         t.setTextSize(16f);
-        t.setPadding(8,8,8,8,);
+        t.setPadding(8,8,8,8);
         layoutTimes.addView(t);
     }
 
     private void showDatePicker(TextView txt){
-        Calender c = Calender.getInstance();
+        Calendar c = Calender.getInstance();
         new DatePickerDialog(this, (view, year, month, day) -> txt.setText(day + "/" + (month + 1) + "/" + year),
                 c.get(Calender.YEAR), c.get(Calender.Month), c.get(Calender.DAY_OF_MONTH)).show();
     }
