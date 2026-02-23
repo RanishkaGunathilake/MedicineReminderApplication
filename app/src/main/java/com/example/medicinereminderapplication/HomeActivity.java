@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
         List<Medicine> medicines = dbHelper.getMedicinesForUser(username);
         if (medicines == null) medicines = new ArrayList<>();
 
-        adapter = new MedicineAdapter(medicines, this, medicine -> {
+        adapter = new MedicineAdapter(medicines, this,medicine -> {
             Intent intent = new Intent(HomeActivity.this, AddEditMedicineActivity.class);
             intent.putExtra("medicineId", medicine.getId());
             intent.putExtra("username", username);

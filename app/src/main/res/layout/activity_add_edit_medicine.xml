@@ -71,7 +71,7 @@
                 android:id="@+id/chkMon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@String/mon" />
+                android:text="@string/mon" />
 
             <CheckBox
                 android:id="@+id/chkTue"

@@ -27,7 +27,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
     LinearLayout layoutTimes;
     Button btnAddTime, btnSave, btnCancel, btnDelete;
     CheckBox chkMon, chkTue, chkWed, chkThu, chkFri, chkSat, chkSun;
-    DatabaseHelper dbhelper;
+    DatabaseHelper dbHelper;
     int medicineId = -1;
     Medicine medicine;
 
@@ -51,8 +51,9 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_medicine);
 
-        dbhelper = new DatabaseHelper(this);
+        dbHelper = new DatabaseHelper(this);
         edtMedicineName = findViewById(R.id.edtMedicineName);
+        edtDosage = findViewById(R.id.edtDosage);
         edtDosage.setFilters(new InputFilter[]{dosageInputFilter});
         edtNotes = findViewById(R.id.edtNotes);
         txtStartDate = findViewById(R.id.txtStartDate);
@@ -74,7 +75,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         //If editing
         medicineId = getIntent().getIntExtra("medicineId", -1);
         if (medicineId != -1){
-            medicine = dbhelper.getMedicineById(medicineId);
+            medicine = dbHelper.getMedicineById(medicineId);
             if (medicine != null){
                 loadMedicineForEdit();
                 btnDelete.setVisibility(Button.VISIBLE);
@@ -88,7 +89,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(v -> finish());
 
         btnDelete.setOnClickListener(v -> {
-            dbhelper.deleteMedicine(medicineId);
+            dbHelper.deleteMedicine(medicineId);
             Toast.makeText(this, "Medicine deleted successfully !", Toast.LENGTH_SHORT).show();
             finish();
         });
@@ -173,12 +174,12 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         if (medicineId == -1){
             //Adding new medicine
             med = new Medicine(name, dosage, StartDate, EndDate, getSelectedDays(), getReminderTimes(), notes, username);
-            dbhelper.insertMedicine(med);
+            dbHelper.insertMedicine(med);
         }
         else{
             //Editing medicine details
             med = new Medicine(medicineId, name, dosage, StartDate, EndDate, getSelectedDays(), getReminderTimes(), notes, username);
-            dbhelper.updateMedicine(med);
+            dbHelper.updateMedicine(med);
         }
 
         Toast.makeText(this, "Medicine saved!", Toast.LENGTH_SHORT).show();

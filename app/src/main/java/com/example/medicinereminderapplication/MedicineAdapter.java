@@ -18,13 +18,13 @@ import android.text.TextUtils;
 public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHolder> {
     private List<Medicine> medicineList;
     private Context context;
-    private AdapterView.OnItemClickListener listener;
+    private OnItemClickListener listener;
 
-    public interface onItemClickListener { //Handling click events
+    public interface OnItemClickListener { //Handling click events
         void onItemClick(Medicine medicine);
     }
 
-    public MedicineAdapter(List<Medicine> medicineList, Context context, AdapterView.OnItemClickListener listener){
+    public MedicineAdapter(List<Medicine> medicineList, Context context, OnItemClickListener listener){
         this.medicineList = medicineList;
         this.context = context;
         this.listener = listener;
