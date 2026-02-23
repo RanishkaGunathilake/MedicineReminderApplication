@@ -86,8 +86,8 @@ public class AddEditMedicineActivity extends AppCompatActivity {
             }
         }
 
-        txtStartDate.setOnClickListener(v -> showDatePicker(txtStartDate));
-        txtEndDate.setOnClickListener(v -> showDatePicker(txtEndDate));
+        txtStartDate.setOnClickListener(v -> showDatePicker(txtStartDate, true));
+        txtEndDate.setOnClickListener(v -> showDatePicker(txtEndDate, false));
         btnAddTime.setOnClickListener(v -> showTimePicker());
         btnSave.setOnClickListener(v -> saveMedicine());
         btnCancel.setOnClickListener(v -> finish());
@@ -192,7 +192,22 @@ public class AddEditMedicineActivity extends AppCompatActivity {
             return;
         }
 
-        //Validating
+        //Validating end date after start date
+        if(!EndDate.isEmpty() && !EndDate.equals(getString(R.string.end_date_text))){
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            try{
+                Date startDate = sdf.parse(StartDate);
+                Date endDate = sdf.parse(EndDate);
+                if(endDate.before(startDate)) {
+                    Toast.makeText(this, "End date must be after start date", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            } catch(ParseException e){
+                e.printStackTrace();
+                Toast.makeText(this, "Invalid date format", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
 
         Medicine med;
         if (medicineId == -1){
