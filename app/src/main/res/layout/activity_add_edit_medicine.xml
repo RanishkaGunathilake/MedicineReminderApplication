@@ -77,37 +77,37 @@
                 android:id="@+id/chkTue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@String/tue" />
+                android:text="@string/tue" />
 
             <CheckBox
                 android:id="@+id/chkWed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@String/wed" />
+                android:text="@string/wed" />
 
             <CheckBox
                 android:id="@+id/chkThu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@String/thu" />
+                android:text="@string/thu" />
 
             <CheckBox
                 android:id="@+id/chkFri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@String/fri" />
+                android:text="@string/fri" />
 
             <CheckBox
                 android:id="@+id/chkSat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@String/sat" />
+                android:text="@string/sat" />
 
             <CheckBox
                 android:id="@+id/chkSun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@String/sun" />
+                android:text="@string/sun" />
             
         </LinearLayout>
 
