@@ -114,4 +114,4 @@ public class Medicine {
     }
 }
 
-//1Completed
+//100% Completed
