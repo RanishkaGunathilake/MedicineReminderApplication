@@ -62,6 +62,9 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         edtNotes = findViewById(R.id.edtNotes);
         txtStartDate = findViewById(R.id.txtStartDate);
         txtEndDate = findViewById(R.id.txtEndDate);
+
+        txtEndDate.setEnabled(false); //Disabling until start date is selected
+
         layoutTimes = findViewById(R.id.layoutTimes);
         btnAddTime = findViewById(R.id.btnAddTime);
         btnSave = findViewById(R.id.btnSave);
@@ -87,7 +90,14 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         }
 
         txtStartDate.setOnClickListener(v -> showDatePicker(txtStartDate, true));
-        txtEndDate.setOnClickListener(v -> showDatePicker(txtEndDate, false));
+        txtEndDate.setOnClickListener(v -> {
+            if (startDateCalendar == null){
+                Toast.makeText(this, "Please select the date first", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            showDatePicker(txtEndDate, false);
+        });
+
         btnAddTime.setOnClickListener(v -> showTimePicker());
         btnSave.setOnClickListener(v -> saveMedicine());
         btnCancel.setOnClickListener(v -> finish());
@@ -108,7 +118,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
 
         //Setting start date calendar
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             startDateCalendar = Calendar.getInstance();
             startDateCalendar.setTime(sdf.parse(medicine.getStartDate()));
         } catch (ParseException ignored){}
@@ -126,6 +136,8 @@ public class AddEditMedicineActivity extends AppCompatActivity {
             }
         }
         for (String t : medicine.getTimes()) addTimeTextView(t);//Adding saved reminder times
+
+        txtEndDate.setEnabled(true);
     }
 
     private void addTimeTextView(String time){
@@ -143,6 +155,8 @@ public class AddEditMedicineActivity extends AppCompatActivity {
             if (isStartDate) {
                 startDateCalendar = Calendar.getInstance();
                 startDateCalendar.set(year, month, day);
+
+                txtEndDate.setEnabled(true);
             }
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 
@@ -194,7 +208,7 @@ public class AddEditMedicineActivity extends AppCompatActivity {
 
         //Validating end date after start date
         if(!EndDate.isEmpty() && !EndDate.equals(getString(R.string.end_date_text))){
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             try{
                 Date startDate = sdf.parse(StartDate);
                 Date endDate = sdf.parse(EndDate);
