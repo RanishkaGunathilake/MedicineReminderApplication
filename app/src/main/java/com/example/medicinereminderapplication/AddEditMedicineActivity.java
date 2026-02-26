@@ -210,6 +210,14 @@ public class AddEditMedicineActivity extends AppCompatActivity {
             return;
         }
 
+        //Validating if at least one day is selected
+        List<String> selectedDays = getSelectedDays();
+        if (selectedDays.isEmpty()){
+            Toast.makeText(this, "Please select at least one day", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         //Validating end date after start date
         if(!EndDate.isEmpty() && !EndDate.equals(getString(R.string.end_date_text))){
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
