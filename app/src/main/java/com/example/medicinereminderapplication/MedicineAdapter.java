@@ -40,7 +40,14 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position){//Setting medicine details into TextViews
         Medicine med = medicineList.get(position);
         holder.txtName.setText(med.getName());
-        holder.txtDosage.setText(med.getDosage());
+        //holder.txtDosage.setText(med.getDosage());
+        String dosage = med.getDosage();
+        if (dosage == null || dosage.isEmpty()){
+            holder.txtDosage.setText("Dosage : N/A");
+        } else {
+            holder.txtDosage.setText("Dosage : " + dosage);
+        }
+
         //holder.txtDays.setText(TextUtils.join(", ", med.getDays() != null ? med.getDays() : new ArrayList()));
         String daysText = "";
         if (med.getDays() != null && !med.getDays().isEmpty()){
@@ -50,6 +57,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         }
         holder.txtDays.setText("Reminder Days : " + daysText);
 
+        //holder.txtTimes.setText(TextUtils.join(", ", med.getTimes() != null ? med.getTimes() : new ArrayList()));
         String timesText = "";
         if (med.getTimes() != null && !med.getTimes().isEmpty()){
             timesText = TextUtils.join(", ", med.getTimes());
@@ -58,7 +66,6 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         }
         holder.txtTimes.setText("Reminder Times : " + timesText);
 
-        //holder.txtTimes.setText(TextUtils.join(", ", med.getTimes() != null ? med.getTimes() : new ArrayList()));
         holder.txtStartDate.setText("From : " + (med.getStartDate() != null ? med.getStartDate() : "N/A"));
 
         String endDate = med.getEndDate();
@@ -66,6 +73,13 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
             holder.txtEndDate.setText("To : N/A");
         } else {
             holder.txtEndDate.setText("To : " + endDate);
+        }
+
+        String notes = med.getNotes();
+        if (notes == null || notes.isEmpty()){
+            holder.txtNotes.setText("Notes : N/A");
+        } else {
+            holder.txtNotes.setText("Notes : " + notes);
         }
 
         holder.itemView.setOnClickListener(v -> listener.onItemClick(med));
@@ -81,7 +95,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView txtName, txtDosage, txtStartDate, txtEndDate, txtDays, txtTimes;
+        TextView txtName, txtDosage, txtStartDate, txtEndDate, txtDays, txtTimes, txtNotes;
 
         public ViewHolder(View itemView){//To hold references
             super(itemView);
@@ -91,6 +105,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
             txtEndDate = itemView.findViewById(R.id.txtEndDate);
             txtDays = itemView.findViewById(R.id.txtDays);
             txtTimes = itemView.findViewById(R.id.txtTimes);
+            txtNotes = itemView.findViewById(R.id.txtNotes);
         }
     }
 }
