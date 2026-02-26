@@ -199,6 +199,10 @@ public class AddEditMedicineActivity extends AppCompatActivity {
         String notes = edtNotes.getText().toString().trim();
         String StartDate = txtStartDate.getText().toString().trim();
         String EndDate = txtEndDate.getText().toString().trim();
+        if (EndDate.equals(getString(R.string.end_date_text))){
+            EndDate = "";
+        }
+
         String username = getIntent().getStringExtra("username"); //Get username from intent
 
         if (name.isEmpty() || StartDate.equals(getString(R.string.start_date_text))){
