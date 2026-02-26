@@ -37,7 +37,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position){
+    public void onBindViewHolder(ViewHolder holder, int position){//Setting medicine details into TextViews
         Medicine med = medicineList.get(position);
         holder.txtName.setText(med.getName());
         holder.txtDosage.setText(med.getDosage());
@@ -60,7 +60,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView txtName, txtDosage, txtStartDate, txtEndDate, txtDays, txtTimes;
 
-        public ViewHolder(View itemView){
+        public ViewHolder(View itemView){//To hold references
             super(itemView);
             txtName = itemView.findViewById(R.id.txtMedicineName);
             txtDosage = itemView.findViewById(R.id.txtDosage);
@@ -72,4 +72,4 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     }
 }
 
-//Completed
+//100% Completed
