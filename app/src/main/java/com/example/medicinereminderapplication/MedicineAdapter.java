@@ -41,8 +41,24 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         Medicine med = medicineList.get(position);
         holder.txtName.setText(med.getName());
         holder.txtDosage.setText(med.getDosage());
-        holder.txtDays.setText(TextUtils.join(", ", med.getDays() != null ? med.getDays() : new ArrayList()));
-        holder.txtTimes.setText(TextUtils.join(", ", med.getTimes() != null ? med.getTimes() : new ArrayList()));
+        //holder.txtDays.setText(TextUtils.join(", ", med.getDays() != null ? med.getDays() : new ArrayList()));
+        String daysText = "";
+        if (med.getDays() != null && !med.getDays().isEmpty()){
+            daysText = TextUtils.join(", ", med.getDays());
+        } else {
+            daysText = "N/A";
+        }
+        holder.txtDays.setText("Reminder Days : " + daysText);
+
+        String timesText = "";
+        if (med.getTimes() != null && !med.getTimes().isEmpty()){
+            timesText = TextUtils.join(", ", med.getTimes());
+        } else {
+            timesText = "N/A";
+        }
+        holder.txtTimes.setText("Reminder Times : " + timesText);
+
+        //holder.txtTimes.setText(TextUtils.join(", ", med.getTimes() != null ? med.getTimes() : new ArrayList()));
         holder.txtStartDate.setText("From : " + (med.getStartDate() != null ? med.getStartDate() : "N/A"));
 
         String endDate = med.getEndDate();
