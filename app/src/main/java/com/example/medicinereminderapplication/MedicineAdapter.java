@@ -44,7 +44,14 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         holder.txtDays.setText(TextUtils.join(", ", med.getDays() != null ? med.getDays() : new ArrayList()));
         holder.txtTimes.setText(TextUtils.join(", ", med.getTimes() != null ? med.getTimes() : new ArrayList()));
         holder.txtStartDate.setText("From : " + (med.getStartDate() != null ? med.getStartDate() : "N/A"));
-        holder.txtEndDate.setText("To : " + (med.getEndDate() != null ? med.getEndDate() : "N/A"));
+
+        String endDate = med.getEndDate();
+        if(endDate == null || endDate.isEmpty() || endDate.equalsIgnoreCase("Optional") || endDate.equalsIgnoreCase("End Date")){
+            holder.txtEndDate.setText("To : N/A");
+        } else {
+            holder.txtEndDate.setText("To : " + endDate);
+        }
+
         holder.itemView.setOnClickListener(v -> listener.onItemClick(med));
     }
 
