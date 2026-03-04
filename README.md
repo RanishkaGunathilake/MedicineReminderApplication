@@ -53,18 +53,18 @@ The system includes authentication, full CRUD operations for medicines, scheduli
 ## Project Structure
 
 com.example.medicinereminderapplication<br/>
-│<br/>
-|── MainActivity.java<br/>
+│ <br/>
+├── MainActivity.java<br/>
 ├── LoginActivity.java<br/>
 ├── RegisterActivity.java<br/>
 ├── HomeActivity.java<br/>
 ├── AddEditMedicineActivity.java<br/>
-│<br/>
+│ <br/>
 ├── DatabaseHelper.java<br/>
 ├── Medicine.java<br/>
 ├── MedicineAdapter.java<br/>
 ├── PasswordUtils.java<br/>
-│<br/>
+│ <br/>
 └── res/<br/>
 ├── layout/<br/>
 │ ├── activity_main.xml<br/>
