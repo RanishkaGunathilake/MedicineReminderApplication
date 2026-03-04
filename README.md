@@ -1,7 +1,5 @@
 MEDIPLUS is an Android based medicine reminder application developed using Java and SQLite. This application allows users to securely register, log in and manage their daily medicine schedules with reminder days, times and also special notes.
 
-
-<br/>
 <br/>
 
 ## Overview of the Application
