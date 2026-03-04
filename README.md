@@ -97,8 +97,8 @@ com.example.medicinereminderapplication<br/>
 | dosage     | TEXT    | Dosage details                     |
 | start_date | TEXT    | Start date                         |
 | end_date   | TEXT    | Optional end date                  |
-| times      | TEXT    | Comma-separated reminder times     |
-| days       | TEXT    | Comma-separated reminder days      |
+| times      | TEXT    | Comma separated reminder times     |
+| days       | TEXT    | Comma separated reminder days      |
 | notes      | TEXT    | Additional notes                   |
 | username   | TEXT    | Owner of the medicine              |
 
