@@ -54,7 +54,7 @@ The system includes authentication, full CRUD operations for medicines, scheduli
 
 com.example.medicinereminderapplication<br/>
 │<br/>
-├── MainActivity.java<br/>
+|── MainActivity.java<br/>
 ├── LoginActivity.java<br/>
 ├── RegisterActivity.java<br/>
 ├── HomeActivity.java<br/>
