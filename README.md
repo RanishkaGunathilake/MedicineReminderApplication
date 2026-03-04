@@ -55,26 +55,26 @@ The system includes authentication, full CRUD operations for medicines, scheduli
 com.example.medicinereminderapplication<br/>
 │<br/>
 ├── MainActivity.java<br/>
-├── LoginActivity.java
-├── RegisterActivity.java
-├── HomeActivity.java
-├── AddEditMedicineActivity.java
-│
-├── DatabaseHelper.java
-├── Medicine.java
-├── MedicineAdapter.java
-├── PasswordUtils.java
-│
-└── res/
-├── layout/
-│ ├── activity_main.xml
-│ ├── activity_login.xml
-│ ├── activity_register.xml
-│ ├── activity_home.xml
-│ ├── activity_add_edit_medicine.xml
-│ └── item_medicine.xml
-├── drawable/
-└── values/
+├── LoginActivity.java<br/>
+├── RegisterActivity.java<br/>
+├── HomeActivity.java<br/>
+├── AddEditMedicineActivity.java<br/>
+│<br/>
+├── DatabaseHelper.java<br/>
+├── Medicine.java<br/>
+├── MedicineAdapter.java<br/>
+├── PasswordUtils.java<br/>
+│<br/>
+└── res/<br/>
+├── layout/<br/>
+│ ├── activity_main.xml<br/>
+│ ├── activity_login.xml<br/>
+│ ├── activity_register.xml<br/>
+│ ├── activity_home.xml<br/>
+│ ├── activity_add_edit_medicine.xml<br/>
+│ └── item_medicine.xml<br/>
+├── drawable/<br/>
+└── values/<br/>
 
 <br/>
 
