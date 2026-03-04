@@ -7,7 +7,7 @@ MEDIPLUS is an Android based medicine reminder application developed using Java 
 MEDIPLUS is designed to help users organize and manage their medication schedules efficiently. Each user has a secure account and all medicine records are stored separately per user.
 The system includes authentication, full CRUD operations for medicines, scheduling with reminder days and times and strong validation rules to ensure correct data entry.
 
-
+<br/>
 
 ## Features
 
@@ -38,7 +38,7 @@ The system includes authentication, full CRUD operations for medicines, scheduli
 - Each medicine record is linked to a specific user
 - Users can only view and manage their own medicines
 
-
+<br/>
 
 ## Technologies Used
 
@@ -48,6 +48,7 @@ The system includes authentication, full CRUD operations for medicines, scheduli
 - **Database :** SQLite  
 - **Security :** SHA-256 Password Hashing  
 
+<br/>
 
 ## Project Structure
 
@@ -75,7 +76,7 @@ com.example.medicinereminderapplication
 ├── drawable/
 └── values/
 
-
+<br/>
 
 ##  Database Design
 
@@ -101,7 +102,7 @@ com.example.medicinereminderapplication
 | notes      | TEXT    | Additional notes                   |
 | username   | TEXT    | Owner of the medicine              |
 
-
+<br/>
 
 ##  Validation Rules
 
@@ -121,7 +122,7 @@ com.example.medicinereminderapplication
 - At least one reminder day must be selected
 - End date must be after start date
 
-
+<br/>
 
 ## How to Run the Project
 
@@ -132,12 +133,12 @@ git clone https://github.com/RanishkaGunathilake/MedicineReminderApplication.git
 3. Allow Gradle to sync.
 4. Run the project on an emulator or Android device.
 
-
+<br/>
 
 ##  Password Security
 
 Passwords are hashed using SHA-256 before being stored in the database. This ensures that plain text passwords are never saved.
 
-
+<br/>
 
 ## 
