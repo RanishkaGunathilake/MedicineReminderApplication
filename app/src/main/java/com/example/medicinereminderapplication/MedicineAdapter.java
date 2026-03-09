@@ -109,5 +109,3 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         }
     }
 }
-
-//100% Completed
