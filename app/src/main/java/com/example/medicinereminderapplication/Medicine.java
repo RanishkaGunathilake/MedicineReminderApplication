@@ -113,5 +113,3 @@ public class Medicine {
         this.times = times;
     }
 }
-
-//100% Completed
