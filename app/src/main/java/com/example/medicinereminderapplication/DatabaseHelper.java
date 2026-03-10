@@ -15,6 +15,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "app.db";
     private static final int DATABASE_VERSION = 1;
 
+    private static final String TABLE_USERS = "users";
+    private static final String TABLE_MEDICINES = "medicines";
+
+    private static final String COL_USER_ID = "id";
+    private static final String COL_MED_ID = "id";
+
+    private static final String COL_USERNAME = "username";
+    private static final String COL_PASSWORD = "password";
+
+    private static final String COL_NAME = "name";
+    private static final String COL_DOSAGE = "dosage";
+    private static final String COL_START_DATE = "start_date";
+    private static final String COL_END_DATE = "end_date";
+    private static final String COL_TIMES = "times";
+    private static final String COL_DAYS = "days";
+    private static final String COL_NOTES = "notes";
+    private static final String COL_OWNER = "username";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -22,21 +40,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String createUsersTable = "CREATE TABLE users (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "username TEXT UNIQUE," +
-                "password TEXT)";
+        String createUsersTable = "CREATE TABLE " + TABLE_USERS + " (" +
+                COL_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COL_USERNAME + " TEXT UNIQUE," +
+                COL_PASSWORD + " TEXT)";
 
-        String createMedicinesTable = "CREATE TABLE medicines (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "name TEXT NOT NULL," +
-                "dosage TEXT," +
-                "start_date TEXT NOT NULL," +
-                "end_date TEXT," +
-                "times TEXT NOT NULL," +
-                "days TEXT NOT NULL," +
-                "notes TEXT," +
-                "username TEXT NOT NULL)";
+        String createMedicinesTable = "CREATE TABLE " + TABLE_MEDICINES + " (" +
+                COL_MED_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COL_NAME + " TEXT NOT NULL," +
+                COL_DOSAGE + " TEXT," +
+                COL_START_DATE + " TEXT NOT NULL," +
+                COL_END_DATE + " TEXT," +
+                COL_TIMES + " TEXT NOT NULL," +
+                COL_DAYS + " TEXT NOT NULL," +
+                COL_NOTES + " TEXT," +
+                COL_OWNER + " TEXT NOT NULL)";
 
         db.execSQL(createUsersTable);
         db.execSQL(createMedicinesTable);
@@ -45,23 +63,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        db.execSQL("DROP TABLE IF EXISTS users");
-        db.execSQL("DROP TABLE IF EXISTS medicines");
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEDICINES);
 
         onCreate(db);
     }
 
-    // ---------------- USER METHODS ----------------
+    // USER METHODS
 
     public boolean addUser(String username, String password) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("username", username);
-        values.put("password", password);
+        values.put(COL_USERNAME, username);
+        values.put(COL_PASSWORD, password);
 
-        long result = db.insert("users", null, values);
+        long result = db.insert(TABLE_USERS, null, values);
 
         db.close();
 
@@ -73,16 +91,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(
-                "users",
+                TABLE_USERS,
                 null,
-                "username=?",
+                COL_USERNAME + "=?",
                 new String[]{username},
                 null,
                 null,
                 null
         );
 
-        boolean exists = cursor.getCount() > 0;
+        boolean exists = cursor.moveToFirst();
 
         cursor.close();
         db.close();
@@ -95,16 +113,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(
-                "users",
+                TABLE_USERS,
                 null,
-                "username=? AND password=?",
+                COL_USERNAME + "=? AND " + COL_PASSWORD + "=?",
                 new String[]{username, password},
                 null,
                 null,
                 null
         );
 
-        boolean valid = cursor.getCount() > 0;
+        boolean valid = cursor.moveToFirst();
 
         cursor.close();
         db.close();
@@ -112,23 +130,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return valid;
     }
 
-    // ---------------- MEDICINE METHODS ----------------
+    // MEDICINE METHODS
 
     public void insertMedicine(Medicine med) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("name", med.getName());
-        values.put("dosage", med.getDosage());
-        values.put("start_date", med.getStartDate());
-        values.put("end_date", med.getEndDate());
-        values.put("times", String.join(",", med.getTimes()));
-        values.put("days", String.join(",", med.getDays()));
-        values.put("notes", med.getNotes());
-        values.put("username", med.getUsername());
+        values.put(COL_NAME, med.getName());
+        values.put(COL_DOSAGE, med.getDosage());
+        values.put(COL_START_DATE, med.getStartDate());
+        values.put(COL_END_DATE, med.getEndDate());
+        values.put(COL_TIMES, String.join(",", med.getTimes()));
+        values.put(COL_DAYS, String.join(",", med.getDays()));
+        values.put(COL_NOTES, med.getNotes());
+        values.put(COL_OWNER, med.getUsername());
 
-        db.insert("medicines", null, values);
+        db.insert(TABLE_MEDICINES, null, values);
 
         db.close();
     }
@@ -138,19 +156,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("name", med.getName());
-        values.put("dosage", med.getDosage());
-        values.put("start_date", med.getStartDate());
-        values.put("end_date", med.getEndDate());
-        values.put("times", String.join(",", med.getTimes()));
-        values.put("days", String.join(",", med.getDays()));
-        values.put("notes", med.getNotes());
-        values.put("username", med.getUsername());
+        values.put(COL_NAME, med.getName());
+        values.put(COL_DOSAGE, med.getDosage());
+        values.put(COL_START_DATE, med.getStartDate());
+        values.put(COL_END_DATE, med.getEndDate());
+        values.put(COL_TIMES, String.join(",", med.getTimes()));
+        values.put(COL_DAYS, String.join(",", med.getDays()));
+        values.put(COL_NOTES, med.getNotes());
+        values.put(COL_OWNER, med.getUsername());
 
         db.update(
-                "medicines",
+                TABLE_MEDICINES,
                 values,
-                "id=?",
+                COL_MED_ID + "=?",
                 new String[]{String.valueOf(med.getId())}
         );
 
@@ -162,8 +180,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.delete(
-                "medicines",
-                "id=?",
+                TABLE_MEDICINES,
+                COL_MED_ID + "=?",
                 new String[]{String.valueOf(id)}
         );
 
@@ -175,9 +193,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(
-                "medicines",
+                TABLE_MEDICINES,
                 null,
-                "id=?",
+                COL_MED_ID + "=?",
                 new String[]{String.valueOf(id)},
                 null,
                 null,
@@ -203,9 +221,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(
-                "medicines",
+                TABLE_MEDICINES,
                 null,
-                "username=?",
+                COL_OWNER + "=?",
                 new String[]{username},
                 null,
                 null,
@@ -224,22 +242,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    // ---------------- HELPER METHOD ----------------
+    // HELPER METHOD
 
     private Medicine buildMedicineFromCursor(Cursor cursor) {
 
-        int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-        String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-        String dosage = cursor.getString(cursor.getColumnIndexOrThrow("dosage"));
-        String start = cursor.getString(cursor.getColumnIndexOrThrow("start_date"));
-        String end = cursor.getString(cursor.getColumnIndexOrThrow("end_date"));
-        String timesStr = cursor.getString(cursor.getColumnIndexOrThrow("times"));
-        String daysStr = cursor.getString(cursor.getColumnIndexOrThrow("days"));
-        String notes = cursor.getString(cursor.getColumnIndexOrThrow("notes"));
-        String username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+        int id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_MED_ID));
+        String name = cursor.getString(cursor.getColumnIndexOrThrow(COL_NAME));
+        String dosage = cursor.getString(cursor.getColumnIndexOrThrow(COL_DOSAGE));
+        String start = cursor.getString(cursor.getColumnIndexOrThrow(COL_START_DATE));
+        String end = cursor.getString(cursor.getColumnIndexOrThrow(COL_END_DATE));
+        String timesStr = cursor.getString(cursor.getColumnIndexOrThrow(COL_TIMES));
+        String daysStr = cursor.getString(cursor.getColumnIndexOrThrow(COL_DAYS));
+        String notes = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOTES));
+        String username = cursor.getString(cursor.getColumnIndexOrThrow(COL_OWNER));
 
-        List<String> times = new ArrayList<>(Arrays.asList(timesStr.split(",")));
-        List<String> days = new ArrayList<>(Arrays.asList(daysStr.split(",")));
+        List<String> times = timesStr != null && !timesStr.isEmpty()
+                ? new ArrayList<>(Arrays.asList(timesStr.split(",")))
+                : new ArrayList<>();
+
+        List<String> days = daysStr != null && !daysStr.isEmpty()
+                ? new ArrayList<>(Arrays.asList(daysStr.split(",")))
+                : new ArrayList<>();
 
         return new Medicine(id, name, dosage, start, end, days, times, notes, username);
     }
