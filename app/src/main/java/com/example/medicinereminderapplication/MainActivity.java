@@ -33,5 +33,3 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
-
-//100% Completed
