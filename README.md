@@ -1,24 +1,23 @@
+## 💊 MEDIPLUS - Medicine Reminder Application
 **MEDIPLUS** is an Android based medicine reminder application developed using Java and SQLite. This application allows users to securely register, log in and manage their daily medicine schedules with reminder days, times and also special notes.
 
-<br/>
 
-## Overview of the Application
+## 📱Overview of the Application
 
 MEDIPLUS is designed to help users organize and manage their medication schedules efficiently. Each user has a secure account and all medicine records are stored separately per user.
 The system includes authentication, full CRUD operations for medicines, scheduling with reminder days and times and strong validation rules to ensure correct data entry.
 
-<br/>
 
-## Features
+## ⭐Features
 
-### User Authentication
+### 🔐User Authentication
 - Secure user registration
 - Password hashing using SHA-256
 - Login validation
 - Unique username enforcement
 - Input validation for username and password strength
 
-### Medicine Management
+### 💊Medicine Management
 - Add new medicines
 - Edit existing medicines
 - Delete medicines
@@ -26,7 +25,7 @@ The system includes authentication, full CRUD operations for medicines, scheduli
 - Add optional notes
 - View all medicines in a RecyclerView list
 
-### Scheduling System
+### 📅Scheduling System
 - Select start date
 - Optional entry for end date
 - End date validation (end date cannot be added before start date)
@@ -34,13 +33,12 @@ The system includes authentication, full CRUD operations for medicines, scheduli
 - Add multiple reminder times
 - At least one reminder day required to save the medicine
 
-### Multi-User Support
+### 👥Multi-User Support
 - Each medicine record is linked to a specific user
 - Users can only view and manage their own medicines
 
-<br/>
 
-## Technologies Used
+## 🛠Technologies Used
 
 - **Language :** Java
 - **IDE :** Android Studio 
@@ -48,9 +46,8 @@ The system includes authentication, full CRUD operations for medicines, scheduli
 - **Database :** SQLite  
 - **Security :** SHA-256 Password Hashing  
 
-<br/>
 
-## Project Structure
+## 📁Project Structure
 
 com.example.medicinereminderapplication<br/>
 │ <br/>
@@ -76,9 +73,8 @@ com.example.medicinereminderapplication<br/>
 ├── drawable/<br/>
 └── values/<br/>
 
-<br/>
 
-##  Database Design
+##  🗄Database Design
 
 ### Users Table
 
@@ -102,9 +98,8 @@ com.example.medicinereminderapplication<br/>
 | notes      | TEXT    | Additional notes                   |
 | username   | TEXT    | Owner of the medicine              |
 
-<br/>
 
-##  Validation Rules
+##  ✔️Validation Rules
 
 ### Username
 - Letters and numbers only
@@ -122,9 +117,8 @@ com.example.medicinereminderapplication<br/>
 - At least one reminder day must be selected
 - End date must be after start date
 
-<br/>
 
-## How to Run the Project
+## ▶️How to Run the Project
 
 1. Clone the repository:
 git clone https://github.com/RanishkaGunathilake/MedicineReminderApplication.git
@@ -133,13 +127,11 @@ git clone https://github.com/RanishkaGunathilake/MedicineReminderApplication.git
 3. Allow Gradle to sync.
 4. Run the project on an emulator or Android device.
 
-<br/>
 
-##  Password Security
+##  🔒Password Security
 
 Passwords are hashed using SHA-256 before being stored in the database. This ensures that plain text passwords are never saved.
 
-<br/>
 
 ## Team Members
 
