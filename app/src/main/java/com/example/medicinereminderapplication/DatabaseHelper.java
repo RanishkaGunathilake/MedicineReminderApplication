@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_USERNAME = "username";
     private static final String COL_PASSWORD = "password";
 
-    private static final String COL_NAME = "name";
+    private static final String COL_MED_NAME = "name";
     private static final String COL_DOSAGE = "dosage";
     private static final String COL_START_DATE = "start_date";
     private static final String COL_END_DATE = "end_date";
@@ -47,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String createMedicinesTable = "CREATE TABLE " + TABLE_MEDICINES + " (" +
                 COL_MED_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                COL_NAME + " TEXT NOT NULL," +
+                COL_MED_NAME + " TEXT NOT NULL," +
                 COL_DOSAGE + " TEXT," +
                 COL_START_DATE + " TEXT NOT NULL," +
                 COL_END_DATE + " TEXT," +
@@ -73,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean addUser(String username, String password) {
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
         values.put(COL_USERNAME, username);
@@ -88,11 +88,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean checkUserExists(String username) {
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.query(
                 TABLE_USERS,
-                null,
+                new String[]{COL_USER_ID},
                 COL_USERNAME + "=?",
                 new String[]{username},
                 null,
@@ -110,11 +110,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean validateUser(String username, String password) {
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.query(
                 TABLE_USERS,
-                null,
+                new String[]{COL_USER_ID},
                 COL_USERNAME + "=? AND " + COL_PASSWORD + "=?",
                 new String[]{username, password},
                 null,
@@ -122,7 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null
         );
 
-        boolean valid = cursor.moveToFirst();
+        boolean valid = cursor.getCount() > 0;
 
         cursor.close();
         db.close();
@@ -134,10 +134,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void insertMedicine(Medicine med) {
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(COL_NAME, med.getName());
+        values.put(COL_MED_NAME, med.getName());
         values.put(COL_DOSAGE, med.getDosage());
         values.put(COL_START_DATE, med.getStartDate());
         values.put(COL_END_DATE, med.getEndDate());
@@ -153,10 +153,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void updateMedicine(Medicine med) {
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(COL_NAME, med.getName());
+        values.put(COL_MED_NAME, med.getName());
         values.put(COL_DOSAGE, med.getDosage());
         values.put(COL_START_DATE, med.getStartDate());
         values.put(COL_END_DATE, med.getEndDate());
@@ -177,7 +177,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteMedicine(int id) {
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
 
         db.delete(
                 TABLE_MEDICINES,
@@ -202,23 +202,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null
         );
 
-        Medicine medicine = null;
+        Medicine med = null;
 
         if (cursor.moveToFirst()) {
-            medicine = buildMedicineFromCursor(cursor);
+            med = buildMedicineFromCursor(cursor);
         }
 
         cursor.close();
         db.close();
 
-        return medicine;
+        return med;
     }
 
     public List<Medicine> getMedicinesForUser(String username) {
 
         List<Medicine> list = new ArrayList<>();
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.query(
                 TABLE_MEDICINES,
@@ -247,7 +247,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private Medicine buildMedicineFromCursor(Cursor cursor) {
 
         int id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_MED_ID));
-        String name = cursor.getString(cursor.getColumnIndexOrThrow(COL_NAME));
+        String name = cursor.getString(cursor.getColumnIndexOrThrow(COL_MED_NAME));
         String dosage = cursor.getString(cursor.getColumnIndexOrThrow(COL_DOSAGE));
         String start = cursor.getString(cursor.getColumnIndexOrThrow(COL_START_DATE));
         String end = cursor.getString(cursor.getColumnIndexOrThrow(COL_END_DATE));
