@@ -137,7 +137,7 @@ Passwords are hashed using SHA-256 before being stored in the database. This ens
 
 | Name                         | Index   | Registration Number          |
 |------------------------------|---------|------------------------------|
-|                              | 5640    | ICT/2022/034                 |
+| D.M.S.M. Dissanayake         | 5640    | ICT/2022/034                 |
 | M.R.M.P. Gunathilake         | 5641    | ICT/2022/035                 |
-|                              | 5642    | ICT/2022/036                 |
+| W.G.S.S. Dahanayake          | 5642    | ICT/2022/036                 |
         
