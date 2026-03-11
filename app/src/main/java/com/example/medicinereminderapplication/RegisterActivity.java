@@ -30,64 +30,68 @@ public class RegisterActivity extends AppCompatActivity {
         btnRgsLogin = findViewById(R.id.btnRgsLogin);
         btnRgsRegister = findViewById(R.id.btnRgsRegister);
 
-        btnRgsRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnRgsRegister.setOnClickListener(v -> {
+            String username = addUsername.getText().toString().trim();
+            String password = addPassword.getText().toString().trim();
+            String confirm = confirmPassword.getText().toString().trim();
 
-                String username = addUsername.getText().toString().trim();
-                String password = addPassword.getText().toString().trim();
-                String confirm = confirmPassword.getText().toString().trim();
-
-                if (username.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (!isValidUsername(username)) {
-                    addUsername.setError("Username can contain only letters and numbers");
-                    return;
-                }
-
-                if (!isValidPassword(password)) {
-                    addPassword.setError("Password must be at least 8 characters and include uppercase, lowercase, numbers and symbols");
-                    return;
-                }
-
-                if (!password.equals(confirm)) {
-                    confirmPassword.setError("Passwords do not match");
-                    return;
-                }
-
-                if (db.checkUserExists(username)) {
-                    addUsername.setError("Username already exists");
-                    return;
-                }
-
-                String hashedPassword = PasswordUtils.hasPassword(password);
-
-                boolean inserted = db.addUser(username, hashedPassword);
-
-                if (inserted) {
-                    Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
-                }
+            if (username.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
+                Toast.makeText(RegisterActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
 
-        btnRgsLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            if (!isValidUsername(username)) {
+                addUsername.setError("Username can contain only letters and numbers");
+                return;
+            }
 
+            if (!isValidPassword(password)) {
+                addPassword.setError("Password must be at least 8 characters and include uppercase, lowercase, numbers and symbols");
+                return;
+            }
+
+            if (!password.equals(confirm)) {
+                confirmPassword.setError("Passwords do not match");
+                return;
+            }
+
+            if (db.checkUserExists(username)) {
+                addUsername.setError("Username already exists");
+                return;
+            }
+
+            String hashedPassword = PasswordUtils.hasPassword(password);
+
+            boolean inserted = db.addUser(username, hashedPassword);
+
+            if (inserted) {
+                Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
+            } else {
+                Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
             }
+        }
+    });
+
+    btnRgsLogin.setOnClickListener(v -> {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         });
     }
+
+    private boolean isValidUsername(String username){
+        return username.matches("^[a-zA-Z0-9]+$");
+    }
+
+    private boolean isValidPassword(String password){
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+    }
+}
+
+
+    
 
     private boolean isValidUsername(String username) {
         return username.matches("[a-zA-Z0-9]+$");
