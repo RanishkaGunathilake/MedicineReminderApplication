@@ -66,5 +66,3 @@ public class HomeActivity extends AppCompatActivity {
         adapter.updateList(dbHelper.getMedicinesForUser(username));//Refresh medicine list after adding/editing medicine
     }
 }
-
-//100% Completed
