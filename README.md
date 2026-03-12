@@ -117,7 +117,9 @@ com.example.medicinereminderapplication<br/>
 - At least one reminder day must be selected
 - End date must be after start date
 
+##  🔒Password Security
 
+Passwords are hashed using SHA-256 before being stored in the database. This ensures that plain text passwords are never saved.
 ## ▶️How to Run the Project
 
 1. Clone the repository:
@@ -126,11 +128,6 @@ git clone https://github.com/RanishkaGunathilake/MedicineReminderApplication.git
 2. Open the project in Android Studio.
 3. Allow Gradle to sync.
 4. Run the project on an emulator or Android device.
-
-
-##  🔒Password Security
-
-Passwords are hashed using SHA-256 before being stored in the database. This ensures that plain text passwords are never saved.
 
 
 ## Team Members
